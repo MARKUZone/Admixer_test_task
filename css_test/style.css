@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+body .container > div {
+  margin-left: 4px !important;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 11px;
+  color: #7f7f7f; }
+  body .container > div > label {
+    display: block;
+    font-weight: normal !important; }
+  body .container > div .form-group {
+    display: inline-block; }
+    body .container > div .form-group .radio {
+      padding: 0;
+      margin: 0; }
+      body .container > div .form-group .radio input {
+        display: none; }
+        body .container > div .form-group .radio input + span {
+          width: 97px;
+          height: 24px;
+          line-height: 24px;
+          text-transform: uppercase;
+          text-align: center;
+          padding: 0 15px;
+          border: 1px solid #7f7f7f;
+          display: inline-block;
+          transition: color 0.5s, border-color 0.5s; }
+    body .container > div .form-group:first-of-type input:checked + span {
+      color: #00B677;
+      border-color: #00B677; }
+    body .container > div .form-group:nth-of-type(2) input:checked + span {
+      color: #D22C2C;
+      border-color: #D22C2C; }
+    body .container > div .form-group:last-of-type input:checked + span {
+      color: #515AFF;
+      border-color: #515AFF; }

@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+$def-color: #7f7f7f;
+$green-select: #00B677;
+$red-select: #D22C2C;
+$blue-select: #515AFF;
+$trans-durat: .5s;
+
+
+
+body .container>div {
+	margin-left: 4px !important;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 11px;
+	color: $def-color;
+	>label {
+		display: block;
+		font-weight: normal !important;
+	}
+	.form-group {
+		display: inline-block;
+		.radio {
+			padding: 0;
+			margin: 0;
+			input {
+				display: none;
+				& + span{
+					width: 97px;
+					height: 24px;
+					line-height: 24px;
+					text-transform: uppercase;
+					text-align: center;
+					padding: 0 15px;
+					border: 1px solid $def-color;
+					display: inline-block;
+					transition: color $trans-durat, border-color $trans-durat;
+				}
+			}
+		}
+		&:first-of-type input:checked + span {
+			color: $green-select;
+			border-color: $green-select;
+		}
+		&:nth-of-type(2) input:checked + span {
+			color: $red-select;
+			border-color: $red-select;
+		}
+		&:last-of-type input:checked + span {
+			color: $blue-select;
+			border-color: $blue-select;
+		}
+	}
+}

@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular.min.js"></script>
+    <style type="text/css">
+        ol {
+            margin: 20px 0;
+            padding: 20px;
+        }
+
+        input.ng-dirty.ng-invalid {
+            border: 1px solid red;
+            background-color: #fddede;
+        }
+    </style>
+
+</head>
+<body ng-app="ngrepeatApp" ng-controller="ngrepeatCtrl">
+    <div class="container">
+        <h1 style="margin-top:60px;">Задание по AngularJS</h1>
+
+        <ol>
+            <li>Под каждым полем ввода выводится строка "Available <i>n</i> symbols", где <i>n</i> - параметр <i>MaxLength</i> у каждого из объектов в массиве $scope.params.</li>
+            <li>
+                Вывести под каждым полем ввода вместо <i>n</i> не параметр <i>MaxLength</i>, а разницу между количеством введенных символов и <i>MaxLength</i> и,
+                если разница отрицательная (т. е. введено больше, чем доступно), выделить эту строку красным цветом.
+            </li>
+            <li>Введенную строку обрезать до <i>MaxLength</i> нельзя.</li>
+            <li>Форма должна иметь состояние $invalid, если какое-то из полей не заполнено или превышен лимит введенных символов, как и сейчас.</li>
+        </ol>
+
+
+        <form novalidate name="paramForm">
+            <div class="form-group" ng-repeat="p in params">
+                <label>{{p.Title}}</label>
+                <input type="text" class="form-control" placeholder="{{p.Description}}" required ng-model="p.Value" ng-maxlength="{{p.MaxLength}}">
+                <small class="form-text text-muted">Available <span>{{p.MaxLength - p.Value.length}}</span> symbols</small>
+            </div>
+            <button type="submit" class="btn btn-success" ng-disabled="paramForm.$invalid">Submit</button>
+        </form>
+
+
+    </div>
+
+
+    <script src="app.js"></script>
+
+
+</body>
+
+</html>
