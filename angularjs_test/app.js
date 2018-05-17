@@ -23,5 +23,13 @@ app.controller("ngrepeatCtrl", function ($scope) {
             MaxLength: 6
         }
     ];
-
+    //$scope.paramForm.capabilities.$setValidity('required', false);
 });
+
+
+//paramForm.capabilities.$setValidity("youAreFat", false);
+
+function myf() {
+    paramForm.capabilities.$setValidity('required', false);
+}
+
