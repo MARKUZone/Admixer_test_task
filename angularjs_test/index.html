@@ -34,9 +34,8 @@
         <form novalidate name="paramForm">
             <div class="form-group" ng-repeat="p in params">
                 <label>{{p.Title}}</label>
-                <input type="text" class="form-control {{ ( p.MaxLength - p.Value.length ) < 0 ? 'ng-dirty ng-invalid' : '' }}" placeholder="{{p.Description}}" required ng-model="p.Value" ng-invalid="{{ true }}" name="capabilities" >
+                <input type="text" class="form-control" placeholder="{{p.Description}}" required ng-model="p.Value" name="{{p.Title}}" ng-change="validCheck(paramForm)" >
                 <small class="form-text text-muted">Available <span>{{p.MaxLength - p.Value.length}}</span> symbols</small>
-                <p>{{p.Value.length}}</p>
             </div>
             <button type="submit" class="btn btn-success" ng-disabled="paramForm.$invalid">Submit</button>
         </form>
@@ -51,4 +50,3 @@
 </body>
 
 </html>
-ng-maxlength="{{p.MaxLength}}"
