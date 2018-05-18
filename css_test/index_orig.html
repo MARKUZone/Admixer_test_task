@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body ng-app="App" ng-controller="Ctrl">
+    <div class="container">
+        <h1 style="margin-top:60px; margin-bottom:20px">Задание по CSS</h1>
+
+        <p>
+            Привести набор radio button к виду на картинке, не меняя логику работы (т.е. тип контролла и не добавлять скриптов). Верстку менять можно :) <br />
+            <img src="radio.png">
+        </p>
+
+        <div style="margin:50px 0">
+            <label>Выберите цвет</label>
+            <div class="form-group" ng-repeat="c in colors">
+                <div class="radio">
+                    <label><input type="radio" name="color" ng-model="$parent.color" value="{{c.Value}}">{{c.Name}}</label>
+                </div>
+            </div>
+        </div>
+
+        <p>color: {{color}}</p>
+
+
+    </div>
+
+    <script src="app.js"></script>
+
+
+</body>
+
+</html>

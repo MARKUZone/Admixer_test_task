@@ -39,21 +39,18 @@ app.controller("ngrepeatCtrl", function ($scope) {
 				}
 			};
 			let htmlItem = document.getElementsByTagName("INPUT")[i];
-			if ( diff()===item.MaxLength ) {
+			if ( diff()===item.MaxLength && !htmlItem.classList.contains("ng-pristine") ) {
 				document.getElementsByTagName("SMALL")[i].setAttribute("style", "color: #999");
-				console.log(i + " - " + "detect 0");
-			} else if ( diff() < 0 && htmlItem.classList.contains("ng-valid") || diff()===item.MaxLength ) {
+			} else if ( diff() < 0 && htmlItem.classList.contains("ng-valid") ) {
 				htmlItem.classList.remove("ng-valid");
 				htmlItem.classList.add("ng-invalid");
 				if ( !htmlItem.classList.contains("ng-pristine") ) {
 					document.getElementsByTagName("SMALL")[i].setAttribute("style", "color: red");
-				} ;
-				console.log(i + " - " + "detect 1");
-			} else if ( diff() >= 0 /*&& !htmlItem.classList.contains("ng-valid")*/ ) {
+				};
+			} else if ( diff() >= 0 && !htmlItem.classList.contains("ng-valid") ) {
 				htmlItem.classList.add("ng-valid");
 				htmlItem.classList.remove("ng-invalid");
 				document.getElementsByTagName("SMALL")[i].setAttribute("style", "color: #999");
-				console.log(i + " - " + "detect 2");
 			};
 		});
 	};
