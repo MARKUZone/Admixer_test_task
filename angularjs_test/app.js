@@ -23,57 +23,49 @@ app.controller("ngrepeatCtrl", function ($scope) {
             MaxLength: 6
         }
     ];
+
 	$scope.validCheck = function(form) {
-		//form.capabilities.$setValidity('required', false);
-		//console.log(`${form} ${titl} = ${value}`);
-		//(value < 0) ? console.log(`${title} is INvalid`) : console.log(`${title} is VALID`);
-		//console.log(this.params[0].Value);
-		//console.log(this.params.some(isNegative));
 		if ( this.params.some(isNegative) ) {
-			//form.title.$setValidity('required', false);
 			form.$setValidity('required', false);
 		} else {
 			form.$setValidity('required', true);
 		};
-		//console.log(form);
 		this.params.forEach( function ( item, i ) {
-			let diff = () => {
+			let diff = function () {
 				if ( item.Value == null ) {
 					return item.MaxLength;
 				} else {
-					item.MaxLength - item.Value.length;
+					return item.MaxLength - item.Value.length;
 				}
 			};
 			let htmlItem = document.getElementsByTagName("INPUT")[i];
-			//console.log(`${i} - ${diff}`);
-			if ( diff < 0 ) {
+			if ( diff()===item.MaxLength ) {
+				document.getElementsByTagName("SMALL")[i].setAttribute("style", "color: #999");
+				console.log(i + " - " + "detect 0");
+			} else if ( diff() < 0 && htmlItem.classList.contains("ng-valid") || diff()===item.MaxLength ) {
 				htmlItem.classList.remove("ng-valid");
 				htmlItem.classList.add("ng-invalid");
-			} else if ( diff >= 0 && !(htmlItem.classList.contains("ng-valid")) ) {
+				if ( !htmlItem.classList.contains("ng-pristine") ) {
+					document.getElementsByTagName("SMALL")[i].setAttribute("style", "color: red");
+				} ;
+				console.log(i + " - " + "detect 1");
+			} else if ( diff() >= 0 /*&& !htmlItem.classList.contains("ng-valid")*/ ) {
 				htmlItem.classList.add("ng-valid");
 				htmlItem.classList.remove("ng-invalid");
-			} else {
-				console.log("hmmmmm...");
+				document.getElementsByTagName("SMALL")[i].setAttribute("style", "color: #999");
+				console.log(i + " - " + "detect 2");
 			};
 		});
 	};
+
 });
 
 
 function isNegative(item, i) {
-	//console.log(item.MaxLength - item.Value.length);
-	//item.Value == null ? true : null;
-	//console.log(i);
 	if ( item.Value == null ) {
 		return true;
 	}
 	let diff = item.MaxLength - item.Value.length;
-	if ( diff < 0 ) {
-		let htmlItem = document.getElementsByTagName("INPUT")[i];
-		htmlItem.classList.remove("ng-valid");
-		htmlItem.classList.add("ng-invalid");
-		//console.log(htmlItem);
-	}
 	return diff < 0;
 }
 
